@@ -1,0 +1,6 @@
+python visualize_all_datasets_heatmap.py --dataset mnist --num_images 10
+python visualize_all_datasets_heatmap.py --dataset fashion_mnist --num_images 10
+python visualize_all_datasets_heatmap.py --dataset cifar10 --num_images 10
+python visualize_all_datasets_heatmap.py --dataset cifar10 --model robustbench:cifar10:Carmon2019Unlabeled --num_images 10
+python visualize_all_datasets_heatmap.py --dataset imagenet --data_root .\imagenet_samples --model resnet50 --num_images 10 --target pred
+python visualize_all_datasets_heatmap.py --dataset imagenet --data_root .\imagenet_samples --model squeezenet1_1 --num_images 10 --target pred
