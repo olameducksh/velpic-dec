@@ -1,0 +1,10 @@
+quantity,value
+train_acc_corrupt_labels,100.0
+train_acc_true_labels,63.28
+model_test_acc,41.83
+orig_test_acc,41.83
+orig_participation,672.397102355957
+velpic_test_acc,51.24
+velpic_participation,672.9516448974609
+resid_test_acc,7.99
+resid_participation,667.6542205810547

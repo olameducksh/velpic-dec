@@ -1,0 +1,4 @@
+head,clean,pgd_whitebox,pgd_transfer_from_orig
+orig,94.8,0.0,0.0
+velpic,94.8,0.0,0.0
+resid_orth,94.8,0.0,0.0

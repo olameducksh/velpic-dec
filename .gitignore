@@ -2,3 +2,20 @@ data/
 imagenet-sample-images/
 saved_models/
 models/
+# --- added: large / regenerable artifacts ---
+
+# feature caches and trained checkpoints (75-100 MB each, all regenerable)
+velpic/**/outputs/*.pt
+velpic/**/outputs/*.pth
+
+# stray checkpoint dir created when running from velpic/main
+velpic/main/saved_models/
+
+# datasets and archives
+*.tgz
+*.tar.gz
+*.zip
+
+# python
+__pycache__/
+*.pyc
