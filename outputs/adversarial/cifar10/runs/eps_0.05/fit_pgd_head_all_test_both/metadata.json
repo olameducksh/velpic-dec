@@ -1,0 +1,28 @@
+{
+  "dataset": "cifar10",
+  "fit": "pgd",
+  "head": "all",
+  "test": "both",
+  "attack": {
+    "dataset": "cifar10",
+    "epsilon": 0.05,
+    "steps": 40,
+    "step_size": 0.01,
+    "batch_size": 128,
+    "targeted": false,
+    "random_start": false,
+    "norm": "Linf"
+  },
+  "train_images": 50000,
+  "test_images": 10000,
+  "figure_indices": [
+    6044,
+    2890,
+    9399,
+    1917,
+    4919,
+    1729,
+    429,
+    7532
+  ]
+}

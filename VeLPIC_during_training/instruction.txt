@@ -1,0 +1,75 @@
+VeLPIC_code: Run this code after principal components are saved. VeLPIC is performed for all layer of the model during training.
+VeLPIC_Weight_change: Last layer weights of the model is replaced with VeLPIC vectors at different epochs over training.
+
+python VeLPIC_code.py -corr 0.0 -run 1 -model MLP -dataset FashionMNIST 
+python VeLPIC_code.py -corr 0.2 -run 1 -model MLP -dataset FashionMNIST 
+python VeLPIC_code.py -corr 0.4 -run 1 -model MLP -dataset FashionMNIST 
+python VeLPIC_code.py -corr 0.6 -run 1 -model MLP -dataset FashionMNIST
+python VeLPIC_code.py -corr 0.8 -run 1 -model MLP -dataset FashionMNIST
+
+python VeLPIC_code.py -corr 0.0 -run 1 -model MLP -dataset MNIST 
+python VeLPIC_code.py -corr 0.2 -run 1 -model MLP -dataset MNIST
+python VeLPIC_code.py -corr 0.4 -run 1 -model MLP -dataset MNIST
+python VeLPIC_code.py -corr 0.6 -run 1 -model MLP -dataset MNIST
+python VeLPIC_code.py -corr 0.8 -run 1 -model MLP -dataset MNIST
+
+python VeLPIC_code.py -corr 0.0 -run 1 -model CNN -dataset FashionMNIST 
+python VeLPIC_code.py -corr 0.2 -run 1 -model CNN -dataset FashionMNIST 
+python VeLPIC_code.py -corr 0.4 -run 1 -model CNN -dataset FashionMNIST 
+python VeLPIC_code.py -corr 0.6 -run 1 -model CNN -dataset FashionMNIST
+python VeLPIC_code.py -corr 0.8 -run 1 -model CNN -dataset FashionMNIST
+
+python VeLPIC_code.py -corr 0.0 -run 1 -model CNN -dataset MNIST 
+python VeLPIC_code.py -corr 0.2 -run 1 -model CNN -dataset MNIST
+python VeLPIC_code.py -corr 0.4 -run 1 -model CNN -dataset MNIST
+python VeLPIC_code.py -corr 0.6 -run 1 -model CNN -dataset MNIST
+python VeLPIC_code.py -corr 0.8 -run 1 -model CNN -dataset MNIST
+
+python VeLPIC_code.py -corr 0.0 -run 1 -model CNN -dataset CIFAR10 
+python VeLPIC_code.py -corr 0.2 -run 1 -model CNN -dataset CIFAR10 
+python VeLPIC_code.py -corr 0.4 -run 1 -model CNN -dataset CIFAR10 
+python VeLPIC_code.py -corr 0.6 -run 1 -model CNN -dataset CIFAR10
+python VeLPIC_code.py -corr 0.8 -run 1 -model CNN -dataset CIFAR10
+
+python VeLPIC_code.py -corr 0.0 -run 1 -model AlexNet -dataset TinyImageNet 
+python VeLPIC_code.py -corr 0.2 -run 1 -model AlexNet -dataset TinyImageNet 
+python VeLPIC_code.py -corr 0.4 -run 1 -model AlexNet -dataset TinyImageNet 
+python VeLPIC_code.py -corr 0.6 -run 1 -model AlexNet -dataset TinyImageNet
+python VeLPIC_code.py -corr 0.8 -run 1 -model AlexNet -dataset TinyImageNet
+
+-------------------------------------------------------------------------
+python VeLPIC_Weight_change.py -corr 0.0 -run 1 -model MLP -dataset FashionMNIST 
+python VeLPIC_Weight_change.py -corr 0.2 -run 1 -model MLP -dataset FashionMNIST 
+python VeLPIC_Weight_change.py -corr 0.4 -run 1 -model MLP -dataset FashionMNIST 
+python VeLPIC_Weight_change.py -corr 0.6 -run 1 -model MLP -dataset FashionMNIST
+python VeLPIC_Weight_change.py -corr 0.8 -run 1 -model MLP -dataset FashionMNIST
+
+python VeLPIC_Weight_change.py -corr 0.0 -run 1 -model MLP -dataset MNIST 
+python VeLPIC_Weight_change.py -corr 0.2 -run 1 -model MLP -dataset MNIST
+python VeLPIC_Weight_change.py -corr 0.4 -run 1 -model MLP -dataset MNIST
+python VeLPIC_Weight_change.py -corr 0.6 -run 1 -model MLP -dataset MNIST
+python VeLPIC_Weight_change.py -corr 0.8 -run 1 -model MLP -dataset MNIST
+
+python VeLPIC_Weight_change.py -corr 0.0 -run 1 -model CNN -dataset FashionMNIST 
+python VeLPIC_Weight_change.py -corr 0.2 -run 1 -model CNN -dataset FashionMNIST 
+python VeLPIC_Weight_change.py -corr 0.4 -run 1 -model CNN -dataset FashionMNIST 
+python VeLPIC_Weight_change.py -corr 0.6 -run 1 -model CNN -dataset FashionMNIST
+python VeLPIC_Weight_change.py -corr 0.8 -run 1 -model CNN -dataset FashionMNIST
+
+python VeLPIC_Weight_change.py -corr 0.0 -run 1 -model CNN -dataset MNIST 
+python VeLPIC_Weight_change.py -corr 0.2 -run 1 -model CNN -dataset MNIST
+python VeLPIC_Weight_change.py -corr 0.4 -run 1 -model CNN -dataset MNIST
+python VeLPIC_Weight_change.py -corr 0.6 -run 1 -model CNN -dataset MNIST
+python VeLPIC_Weight_change.py -corr 0.8 -run 1 -model CNN -dataset MNIST
+
+python VeLPIC_Weight_change.py -corr 0.0 -run 1 -model CNN -dataset CIFAR10 
+python VeLPIC_Weight_change.py -corr 0.2 -run 1 -model CNN -dataset CIFAR10 
+python VeLPIC_Weight_change.py -corr 0.4 -run 1 -model CNN -dataset CIFAR10 
+python VeLPIC_Weight_change.py -corr 0.6 -run 1 -model CNN -dataset CIFAR10
+python VeLPIC_Weight_change.py -corr 0.8 -run 1 -model CNN -dataset CIFAR10
+
+python VeLPIC_Weight_change.py -corr 0.0 -run 1 -model AlexNet -dataset TinyImageNet 
+python VeLPIC_Weight_change.py -corr 0.2 -run 1 -model AlexNet -dataset TinyImageNet 
+python VeLPIC_Weight_change.py -corr 0.4 -run 1 -model AlexNet -dataset TinyImageNet 
+python VeLPIC_Weight_change.py -corr 0.6 -run 1 -model AlexNet -dataset TinyImageNet
+python VeLPIC_Weight_change.py -corr 0.8 -run 1 -model AlexNet -dataset TinyImageNet
