@@ -1,21 +1,30 @@
-data/
-imagenet-sample-images/
-saved_models/
-models/
-# --- added: large / regenerable artifacts ---
+/data/
+/models/*
+!/models/mnist_cnn.pth
 
-# feature caches and trained checkpoints (75-100 MB each, all regenerable)
-velpic/**/outputs/*.pt
-velpic/**/outputs/*.pth
+/outputs/**
+!/outputs/**/
+!/outputs/**/*.png
+!/outputs/**/*.csv
+!/outputs/**/metadata.json
+/outputs/**/pca/
+/outputs/**/fits/
 
-# stray checkpoint dir created when running from velpic/main
-velpic/main/saved_models/
+/adversarial.zip
+/adversarial/**/*.ipynb
+/adversarial/**/example_imgs/
+/adversarial/**/model_weights/
+/garb/
 
-# datasets and archives
-*.tgz
-*.tar.gz
-*.zip
-
-# python
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+venv/
+adv_env/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+.env

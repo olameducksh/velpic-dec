@@ -1,0 +1,23 @@
+# MNIST — epsilon 0.5
+python velpic_experiments.py --dataset mnist --epsilon 0.5 --head original
+python velpic_experiments.py --dataset mnist --epsilon 0.5 --fit clean
+python velpic_experiments.py --dataset mnist --epsilon 0.5 --fit pgd
+python velpic_experiments.py --dataset mnist --epsilon 0.5 --fit mixed
+
+# MNIST — epsilon 0.8
+python velpic_experiments.py --dataset mnist --epsilon 0.8 --head original
+python velpic_experiments.py --dataset mnist --epsilon 0.8 --fit clean
+python velpic_experiments.py --dataset mnist --epsilon 0.8 --fit pgd
+python velpic_experiments.py --dataset mnist --epsilon 0.8 --fit mixed
+
+# CIFAR-10 — epsilon 0.05
+python velpic_experiments.py --dataset cifar10 --epsilon 0.05 --head original
+python velpic_experiments.py --dataset cifar10 --epsilon 0.05 --fit clean
+python velpic_experiments.py --dataset cifar10 --epsilon 0.05 --fit pgd
+python velpic_experiments.py --dataset cifar10 --epsilon 0.05 --fit mixed
+
+# CIFAR-10 — epsilon 0.1
+python velpic_experiments.py --dataset cifar10 --epsilon 0.1 --head original
+python velpic_experiments.py --dataset cifar10 --epsilon 0.1 --fit clean
+python velpic_experiments.py --dataset cifar10 --epsilon 0.1 --fit pgd
+python velpic_experiments.py --dataset cifar10 --epsilon 0.1 --fit mixed

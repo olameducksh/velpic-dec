@@ -1,8 +1,0 @@
-quantity,value
-corrupt_frac,0.4
-n_train,10000
-model_train_corrupt,100.0
-model_train_true,63.28
-model_test_true,42.0
-velpic_test_true,51.86
-velpic_train_true,65.99
