@@ -20,7 +20,9 @@ def main():
     a = p.parse_args()
     fitting = a.head != "original"
     needs_pgd = (fitting and a.fit != "clean") or a.test != "clean"
+
     model, tr, te = pgd.load(a.dataset)
+
     base = a.output_dir / a.dataset
     folder, attack_meta = pgd.location(a) if needs_pgd else (None, None)
     tag = folder.name if needs_pgd else "clean"
@@ -33,6 +35,7 @@ def main():
         fit_dir = base / "fits" / ("clean" if fit == "clean" else f"{fit}_{tag}")
         fit_dir.mkdir(parents=True, exist_ok=True)
         weights = fit_dir / "V.pt"
+        
         if weights.exists():
             V = torch.load(weights, map_location="cuda", weights_only=True)
         else:
@@ -40,6 +43,7 @@ def main():
             if fit != "clean":
                 adv = pgd.dataset(model, tr, "train", folder, attack_meta, a.bs)
                 train_set = adv if fit == "pgd" else ConcatDataset([tr, adv])
+
             feats, ys = vp.features(model, train_set, a.bs)
             V = vp.velpic(feats, ys, len(te.classes), fit_dir / "pca")
             torch.save(V.cpu(), weights)  # final sign-corrected V, unlike the intermediate PC files
@@ -48,6 +52,7 @@ def main():
             del feats, ys, train_set
             if fit != "clean":
                 del adv
+        
         W = vp.head(model).weight.detach()
         if a.head in ("velpic", "all"):
             heads["velpic"] = vp.swap(model, V)

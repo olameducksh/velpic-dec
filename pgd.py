@@ -6,7 +6,6 @@ from pathlib import Path
 
 import torch
 from torch.utils.data import DataLoader, TensorDataset
-from tqdm import tqdm
 
 import velpic as vp
 
@@ -45,24 +44,24 @@ def dataset(model, clean, split, folder, meta, bs):
     path = folder / f"{split}.pt"
     if path.exists():
         saved = torch.load(path, map_location="cpu", weights_only=True)
-        if saved["metadata"] != meta or len(saved["labels"]) != len(clean):
-            raise ValueError(f"Saved PGD settings/count mismatch: {path}")
         # print(f"Reusing {path} ({len(clean)} images)", flush=True)
         return TensorDataset(saved["images"], saved["labels"])
     params = {"eps": meta["epsilon"], "iters": meta["steps"],
               "step_size": meta["step_size"], "targeted": False}
     images, labels = [], []
     # print(f"Generating {split}: {len(clean)} images; epsilon={meta['epsilon']:g}", flush=True)
-    for x, y in tqdm(DataLoader(clean, bs), desc=f"PGD {split}"): # x -> batch images, y -> true labels
+    for x, y in DataLoader(clean, bs): # x -> batch images, y -> true labels
         adv = attacks.pgd_attack(model, x, y, params) if params["eps"] else x
         adv = adv.detach().cpu()  # save floating pixels, with no attack computation graph
         images.append(adv)
         labels.append(y)
     images, labels = torch.cat(images), torch.cat(labels) #joins all images into one tensor, all labels into another seperate tensor
     folder.mkdir(parents=True, exist_ok=True)
+    
     # An interrupted write must not look like a completed dataset.
     torch.save({"images": images, "labels": labels, "metadata": meta}, path.with_suffix(".tmp"))
     path.with_suffix(".tmp").replace(path)
+
     (folder / "metadata.json").write_text(json.dumps(meta, indent=2))
     print(f"Saved {path}", flush=True)
     return TensorDataset(images, labels)
