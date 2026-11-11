@@ -11,6 +11,11 @@
 /outputs/**/fits/
 
 /adversarial.zip
+/daksh_work.zip
+/new_code.zip
+/side_tests/**/pgd_data/
+/side_tests/**/fits/
+/side_tests/**/pca/
 /adversarial/**/*.ipynb
 /adversarial/**/example_imgs/
 /adversarial/**/model_weights/
