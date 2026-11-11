@@ -19,7 +19,7 @@ from CNN_code import cnn_create                                     # NgnCnn + i
 from robustbench.utils import load_model
 import grads
 
-DATA, MODELS, OUT = ROOT / "data", ROOT / "models", HERE / "outputs"
+DATA, MODELS, OUT = ROOT / "data", ROOT / "models", HERE / "outputs" / "mnist_cnn"
 IMAGENETTE_IDX = [0, 217, 482, 491, 497, 566, 569, 571, 574, 701]  # ImageNet ids of the 10 Imagenette classes
 
 
@@ -46,7 +46,7 @@ def load(name, epochs):
         tr, te = (datasets.MNIST(DATA, train=t, download=True, transform=tf) for t in (True, False))
         # Normalize((0.5,), (0.5,)) moved inside the model, so gradients are w.r.t. raw pixels
         model = nn.Sequential(T.Normalize((0.5,), (0.5,)), cnn_create.model_create("CNN", "MNIST")).cuda()
-        model[1].load_state_dict(torch.load(MODELS / "model_40.pth", map_location="cpu", weights_only=True))
+        model.load_state_dict(torch.load(MODELS / "mnist_cnn.pth", map_location="cpu", weights_only=True))
     elif name in ("cifar10", "cifar10r"):
         tr, te = (datasets.CIFAR10(DATA, train=t, download=True, transform=tf) for t in (True, False))
         # RobustBench WRN-28-10, takes [0, 1] images: cifar10 = normally trained, cifar10r = adversarially trained (Linf)

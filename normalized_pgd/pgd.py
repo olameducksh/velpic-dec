@@ -20,7 +20,7 @@ def parser():
     p.add_argument("--steps", type=int, default=40)
     p.add_argument("--step-size", type=float, default=0.1) # Normalized units for MNIST, raw pixels for CIFAR-10
     p.add_argument("--bs", type=int, default=128)
-    p.add_argument("--cache-dir", type=Path, default=vp.HERE / "data" / "pgd")
+    p.add_argument("--cache-dir", type=Path, default=vp.HERE / "data" / "pgd_mnist_cnn")
     return p
 
 def load(dataset):
