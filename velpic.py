@@ -61,7 +61,7 @@ def load(name, epochs):
         fc, net.fc = net.fc, nn.Linear(2048, 10)
         net.fc.load_state_dict({k: v[IMAGENETTE_IDX] for k, v in fc.state_dict().items()})  # W: 1000x2048 -> 10x2048
         model = nn.Sequential(T.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]), net).cuda()
-    return model.eval(), tr, te
+    return model.eval(), tr, te #loaded nn in eval mode, training data, testing data
 
 
 def head(model):
@@ -72,7 +72,7 @@ def head(model):
 @torch.no_grad()
 def features(model, ds, bs):
     """Inputs of the pre-softmax layer (N x d, on GPU) and labels."""
-    feats, ys = [], []
+    feats, ys = [], [] # (batches of feature vectors, corresponding batches of true labels)
     hook = head(model).register_forward_hook(lambda m, inp, out: feats.append(inp[0]))
     for x, y in DataLoader(ds, bs):
         model(x.cuda())
