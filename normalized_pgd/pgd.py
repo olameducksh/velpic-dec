@@ -13,14 +13,19 @@ sys.path.insert(0, str(vp.ROOT / "adversarial"))
 from adv_attacks_main import attacks
 
 
+class RawPixels(torch.nn.Module):
+    def forward(self, x):
+        return (x + 1) / 2
+
+
 def parser():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--dataset", required=True, choices=["mnist", "cifar10"])
     p.add_argument("--epsilon", type=float)
     p.add_argument("--steps", type=int, default=40)
-    p.add_argument("--step-size", type=float, default=0.1) # Normalized units for MNIST, raw pixels for CIFAR-10
+    p.add_argument("--step-size", type=float, default=0.1)  # Normalized pixel units
     p.add_argument("--bs", type=int, default=128)
-    p.add_argument("--cache-dir", type=Path, default=vp.HERE / "data" / "pgd_mnist_cnn")
+    p.add_argument("--cache-dir", type=Path)
     return p
 
 def load(dataset):
@@ -32,7 +37,11 @@ def load(dataset):
 def location(a):
     meta = dict(dataset=a.dataset, epsilon=a.epsilon, steps=a.steps, step_size=a.step_size,
                 batch_size=a.bs, targeted=False, random_start=False, norm="Linf")
-    folder = a.cache_dir / a.dataset / f"eps_{a.epsilon:g}"
+    if a.dataset == "cifar10":
+        meta.update(attack_input_range=[-1, 1], clip_range=[0, 1], checkpoint_input_range=[0, 1],
+                    epsilon_coordinate="normalized")
+    cache_dir = a.cache_dir or vp.HERE / "data" / ("pgd_mnist_cnn" if a.dataset == "mnist" else "pgd")
+    folder = cache_dir / a.dataset / f"eps_{a.epsilon:g}"
     return folder, meta
 
 
@@ -44,15 +53,18 @@ def dataset(model, clean, split, folder, meta, bs):
         return TensorDataset(saved["images"], saved["labels"])
     params = {"eps": meta["epsilon"], "iters": meta["steps"],
               "step_size": meta["step_size"], "targeted": False}
+    mnist = meta["dataset"] == "mnist"
+    # CIFAR-10's checkpoint expects raw pixels, even while PGD works in normalized space.
+    attack_model = model[1] if mnist else torch.nn.Sequential(RawPixels(), model)
     images, labels = [], []
     # print(f"Generating {split}: {len(clean)} images; epsilon={meta['epsilon']:g}", flush=True)
     for x, y in DataLoader(clean, bs): # x -> batch images, y -> true labels
-        if meta["dataset"] == "mnist" and params["eps"]:
-            x_norm = model[0](x)  # Normalize before PGD.
-            adv_norm = attacks.pgd_attack(model[1], x_norm, y, params)
+        if params["eps"]:
+            x_norm = model[0](x) if mnist else 2 * x - 1
+            adv_norm = attacks.pgd_attack(attack_model, x_norm, y, params)
             adv = (adv_norm + 1) / 2  # Back to raw pixels for evaluation and plots.
         else:
-            adv = attacks.pgd_attack(model, x, y, params) if params["eps"] else x
+            adv = x
         adv = adv.detach().cpu()  # save floating pixels, with no attack computation graph
         images.append(adv)
         labels.append(y)

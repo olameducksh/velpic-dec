@@ -1,6 +1,18 @@
-/data/
+data/
 /models/*
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.safetensors
+*.npy
+*.npz
 !/models/mnist_cnn.pth
+
+fits/
+pca/
+pgd/
+pgd_data/
 
 /outputs/**
 !/outputs/**/
@@ -10,12 +22,12 @@
 /outputs/**/pca/
 /outputs/**/fits/
 
-/adversarial.zip
-/daksh_work.zip
-/new_code.zip
-/side_tests/**/pgd_data/
-/side_tests/**/fits/
-/side_tests/**/pca/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+/side_tests/cifar10_normalized/
 /adversarial/**/*.ipynb
 /adversarial/**/example_imgs/
 /adversarial/**/model_weights/
@@ -32,4 +44,6 @@ adv_env/
 Thumbs.db
 *.tmp
 *.log
+*.inspect.ndjson
+~$*
 .env

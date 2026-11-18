@@ -18,7 +18,7 @@ def parser():
     p.add_argument("--dataset", required=True, choices=["mnist", "cifar10"])
     p.add_argument("--epsilon", type=float)
     p.add_argument("--steps", type=int, default=40)
-    p.add_argument("--step-size", type=float, default=0.01) # PGD step in raw pixel units
+    p.add_argument("--step-size", type=float, default=0.1) # PGD step in raw pixel units
     p.add_argument("--bs", type=int, default=128)
     p.add_argument("--cache-dir", type=Path, default=vp.DATA / "pgd")
     return p

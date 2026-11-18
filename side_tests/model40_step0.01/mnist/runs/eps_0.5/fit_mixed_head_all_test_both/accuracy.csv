@@ -1,0 +1,7 @@
+test,head,test_acc
+clean,orig,99.10
+clean,velpic,61.98
+clean,resid,67.19
+pgd,orig,0.00
+pgd,velpic,30.12
+pgd,resid,0.38

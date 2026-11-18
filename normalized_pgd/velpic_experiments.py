@@ -16,8 +16,9 @@ def main():
     p.add_argument("--test", choices=["clean", "pgd", "both"], default="both") # which test images to use for grads
     p.add_argument("--head", choices=["original", "velpic", "resid", "all"], default="all") # which head to use in the nn (both swapped heads have zero bias)
     p.add_argument("--n_show", "--n-show", type=int, default=8)
-    p.add_argument("--output-dir", type=pgd.Path, default=vp.OUT / "adversarial")
+    p.add_argument("--output-dir", type=pgd.Path)
     a = p.parse_args()
+    a.output_dir = a.output_dir or (vp.OUT if a.dataset == "mnist" else vp.HERE / "outputs") / "adversarial"
     fitting = a.head != "original"
     needs_pgd = (fitting and a.fit != "clean") or a.test != "clean"
 
